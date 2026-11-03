@@ -22,7 +22,7 @@ SERVER_RUNTIME_DEPENDENCIES = {
     "grpcio>=1.60.0,<2.0.0",
     "jsonschema>=4.23.0,<5.0.0",
     "jwcrypto>=1.5.6,<2",
-    "logfire[fastapi,httpx,redis]>=4.37.0,<5.0.0",
+    "logfire[fastapi,httpx,redis]>=5.2.0,<6.0.0",
     "openshell>=0.0.106,<0.1.0",
     "pillow>=11.3.0,<13",
     "pydantic-ai-slim[anthropic,google,openai]==2.31.0",

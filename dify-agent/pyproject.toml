@@ -28,7 +28,14 @@ server = [
     "grpcio>=1.60.0,<2.0.0",
     "jsonschema>=4.23.0,<5.0.0",
     "jwcrypto>=1.5.6,<2",
-    "logfire[fastapi,httpx,redis]>=4.37.0,<5.0.0",
+    # GHSA-xcq7-p3pf-p88h / CVE-2026-114603 (unbounded `tracestate` parsing) is only
+    # fixed in opentelemetry-api>=1.45.1, and it cannot be reached on logfire 4.x:
+    # logfire <5.2.0 caps opentelemetry-sdk<1.45.0, and every sdk up to 1.44 still
+    # imports `opentelemetry.util.types._ExtendedAttributes`, which 1.45 removed — so
+    # pairing api 1.45 with an older sdk fails at import time. logfire 5.2.0 is the
+    # first release that supports OpenTelemetry 1.45 (pydantic/logfire#2536), which is
+    # what lets the api/sdk/instrumentation set move together.
+    "logfire[fastapi,httpx,redis]>=5.2.0,<6.0.0",
     "openshell>=0.0.106,<0.1.0",
     "pydantic-ai-slim[anthropic,google,openai]==2.31.0",
     "pydantic-settings>=2.12.0,<3.0.0",
